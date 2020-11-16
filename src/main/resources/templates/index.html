@@ -22,6 +22,30 @@
 				</div>
 			</div>
 		</div>
+		<div class="row top-offset">
+			<div class="col-md-6 offset-md-3">
+				<div class="alert alert-danger text-center" role="alert" th:text="${danger}" th:if="${danger}"></div>
+				<form th:action="@{/search}" th:object="${form}" method="post">
+					<fieldset>
+						<div class="form-group">
+							<label for="searchMethod">Wybierz sposób wyszukiwania</label>
+							<select th:field="*{searchMethod}" class="form-control" id="searchMethod">
+								<option th:value="'KontoBankowe'" th:text="'Konto bankowe'"></option>
+								<option th:value="'Nip'" th:text="Nip"></option>
+								<option th:value="'Regon'" th:text="Regon"></option>
+							</select>
+							<div class="alert alert-danger text-center" th:if="${#fields.hasErrors('searchMethod')}" th:errors="*{searchMethod}">searchMethod Error</div>
+						</div>
+						<div class="form-group">
+							<label for="number">Podaj odpowiedni numer</label>
+							<input type="text" class="form-control" id="number" th:field="*{number}" placeholder="Podaj numer">
+							<div class="alert alert-danger text-center" th:if="${#fields.hasErrors('number')}" th:errors="*{number}">Number Error</div>
+						</div>
+						<button type="submit" class="btn btn-primary">Wyszukaj</button>
+					</fieldset>
+				</form>
+			</div>
+		</div>
 	</div>
 </body>
 </html>
