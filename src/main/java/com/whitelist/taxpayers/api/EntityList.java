@@ -43,9 +43,7 @@ public class EntityList {
 	 * @return subjects
 	 **/
 	@ApiModelProperty(value = "Lista podmiotów ")
-
 	@Valid
-
 	public List<Entity> getSubjects() {
 		return subjects;
 	}
