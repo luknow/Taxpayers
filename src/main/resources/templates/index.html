@@ -46,6 +46,122 @@
 				</form>
 			</div>
 		</div>
+		<div class="col-md-12 top-offset">
+			<table class="table table-bordered">
+				<tbody th:each="result : ${results?.Subjects}">	
+					<tr>
+						<th>Data wyszukiwania</th>
+						<td th:text="${results?.Date}" class="text-right"</td>
+					</tr>
+					<tr>
+						<th>Identyfikator wyszukiwania</th>
+						<td th:text="${results?.requestId}" class="text-right"</td>
+					</tr>
+					<tr>
+						<th>Firma (nazwa) lub imię i nazwisko</th>
+						<td th:text="${result.Name}" class="text-right"</td>
+					</tr> 
+					<tr>
+						<th>Adres siedziby – w przypadku podmiotu niebędącego osobą fizyczną</th>
+						<td th:text="${result.ResidenceAddress}" class="text-right"</td>
+					</tr>
+					<tr>
+						<th>Adres stałego miejsca prowadzenia działalności albo adres miejsca zamieszkania, w przypadku braku adresu stałego miejsca prowadzenia działalności - w odniesieniu do osoby fizycznej</th>
+						<td th:text="${result.WorkingAddress}" class="text-right"</td>
+					</tr>
+					<tr>
+						<th>Status podatnika (wg stanu na dzień sprawdzenia)</th>
+						<td th:text="${result.StatusVat}" class="text-right"</td>
+					</tr>
+					<tr>
+						<th>Data rejestracji jako podatnika VAT</th>
+						<td th:text="${result.RegistrationLegalDate}" class="text-right"</td>
+					</tr>
+					<tr>
+						<th>Numer, za pomocą którego podmiot został zidentyfikowany na potrzeby podatku, jeżeli taki numer został przyznany</th>
+						<td th:text="${result.Nip}" class="text-right"</td>
+					</tr>
+					<tr>
+						<th>Numer w Krajowym Rejestrze Sądowym, o ile został nadany</th>
+						<td th:text="${result.Krs}" class="text-right"</td>
+					</tr>
+					<tr>
+						<th>Numer identyfikacyjny REGON, o ile został nadany</th>
+						<td th:text="${result.Regon}" class="text-right"</td>
+					</tr> 
+					<tr>
+						<th>Numery rachunków rozliczeniowych lub imiennych rachunków w SKOK</th>
+						<td class="text-right">
+							<ul th:each="AccountNumber : ${result.AccountNumbers}">
+								<li th:text="${AccountNumber}"></li>
+							</ul>
+						</td>
+					</tr>
+					<tr>
+						<th>Podmiot może posiadać inne rachunki bankowe, które są przyporządkowane do rachunków wyświetlonych w wykazie</th>
+						<td th:text="${result.HasVirtualAccounts} ? 'TAK' : 'NIE'" class="text-right"</td>
+					</tr>
+					<tr>
+						<th>Numer PESEL, o ile podmiot posiada</th>
+						<td th:text="${result.Pesel}" class="text-right"</td>
+					</tr> 
+					<tr>
+						<th>Imiona i nazwiska prokurentów oraz ich numery identyfikacji podatkowej lub numery PESEL</th>
+						<td class="text-right">
+							<ul th:each="AuthorizedClerk : ${result.AuthorizedClerks}">
+								<li th:text="${AuthorizedClerk.FirstName != null} ? ${AuthorizedClerk.FirstName} : 'Brak danych' "></li>
+       							<li th:text="${AuthorizedClerk.LastName != null} ? ${AuthorizedClerk.LastName} : 'Brak danych' "></li>
+       							<li th:text="${AuthorizedClerk.Nip != null} ? ${AuthorizedClerk.Nip} : 'Brak danych' "></li>
+       							<li th:text="${AuthorizedClerk.Pesel != null} ? ${AuthorizedClerk.Pesel} : 'Brak danych' "></li>
+							</ul>
+						</td>
+					</tr>
+					<tr>
+						<th>Imiona i nazwiska osób wchodzących w skład organu uprawnionego do reprezentowania podmiotu oraz ich numery identyfikacji podatkowej lub numery PESEL</th>
+						<td class="text-right">
+							<ul th:each="Representative : ${result.Representatives}">
+       							<li th:text="'Imię: '+${Representative.FirstName != null} ? ${Representative.FirstName} : 'Brak danych' "></li>
+       							<li th:text="'Nazwisko: '+${Representative.LastName != null} ? ${Representative.LastName} : 'Brak danych' "></li>
+       							<li th:text="'Nip: '+${Representative.Nip != null} ? ${Representative.Nip} : 'Brak danych' "></li>
+       							<li th:text="${Representative.Pesel != null} ? ${Representative.Pesel} : 'Brak danych' "></li>
+							</ul>
+						</td>
+					</tr>
+					<tr>
+						<th>Imiona i nazwiska lub firmy (nazwa) wspólnika oraz ich numery identyfikacji podatkowej lub numery PESEL</th>
+						<td class="text-right">
+							<ul th:each="Partner : ${result.Partners}">
+								<li th:text="${Partner.CompanyName != null} ? ${Partner.CompanyName} : 'Brak danych' "></li>
+							</ul>
+						</td>
+					</tr>
+					<tr>
+						<th>Data odmowy rejestracji jako podatnika VAT</th>
+						<td th:text="${result.RegistrationDenialDate}" class="text-right"</td>
+					</tr>
+					<tr>
+						<th>Podstawa prawna odmowy rejestracji</th>
+						<td th:text="${result.RegistrationDenialBasis}" class="text-right"</td>
+					</tr>
+					<tr>
+						<th>Data wykreślenia rejestracji jako podatnika VAT</th>
+						<td th:text="${result.RemovalDate}" class="text-right"</td>
+					</tr>
+					<tr>
+						<th>Podstawa prawna wykreślenia</th>
+						<td th:text="${result.RemovalBasis}" class="text-right"</td>
+					</tr>
+					<tr>
+						<th>Data przywrócenia rejestracji jako podatnika VAT</th>
+						<td th:text="${result.RestorationDate}" class="text-right"</td>
+					</tr>
+					<tr>
+						<th>Podstawa prawna przywrócenia</th>
+						<td th:text="${result.RestorationBasis}" class="text-right"</td>
+					</tr>
+				</tbody>
+			</table>	
+		</div>
 	</div>
 </body>
 </html>
