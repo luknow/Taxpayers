@@ -6,7 +6,7 @@ public class Form {
 
 	@NotEmpty(message = "Proszę podać sposób wyszukiwania!")
 	private String searchMethod;
-
+	
 	@NotEmpty(message = "Proszę podać numer!")
 	private String number;
 
